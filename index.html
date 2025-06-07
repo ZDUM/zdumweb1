@@ -1,103 +1,128 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>test kak</title>
+  <meta charset="UTF-8">
+  <title>Kartu Ulang Tahun</title>
   <style>
     body {
-      background: linear-gradient(to right, #ffecd2, #fcb69f);
       font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 50px;
-      color: #333;
-      overflow: hidden;
+      background: linear-gradient(120deg, #fff8b7 0%, #ffc0cb 100%);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .envelope {
+      width: 400px;
+      height: 270px;
+      background-color: #ff6f91;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       position: relative;
+      overflow: hidden;
+      padding-top: 30px;
+      box-sizing: border-box;
+      transition: transform 0.4s ease;
     }
 
-    h1 {
-      font-size: 3em;
-      color: #ff4081;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin-top: 20px;
-      animation: fadeIn 3s ease-in-out;
-    }
-
-    .emoji {
-      font-size: 2.5em;
-      margin-top: 20px;
-      animation: bounce 1.5s infinite;
-    }
-
-    .name {
+    .warning-text {
+      color: #fff;
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 10px;
       font-weight: bold;
-      color: #d500f9;
+      animation: blink 1s step-start 0s infinite;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes blink {
+      50% { opacity: 0; }
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .confetti {
+    .letter {
       position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: red;
-      top: 0;
-      animation: fall 5s linear infinite;
-      opacity: 0.8;
-      border-radius: 50%;
-      z-index: 0;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      padding: 15px 20px;
+      box-sizing: border-box;
+      text-align: center;
+      transition: top 0.6s ease;
+      overflow-y: auto;
     }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
+    .letter h1 {
+      color: #ff4081;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .letter p {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .open-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffffff;
+      color: #ff4081;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      z-index: 2;
+    }
+
+    .open-button:hover {
+      background-color: #ffe3ec;
+    }
+
+    .envelope.opened .letter {
+      top: 0;
+    }
+
+    .envelope.opened .open-button,
+    .envelope.opened .warning-text {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>🎉 Selamat Ulang Tahun! 🎉</h1>
-  <p>Halo <span class="name" id="nama">Nadine</span> selamat ulang tahun yaa,</p>
-  <p> Semoga hari ini membawa kebahagiaan yang tak terlupakan,</p>
-  <p>dan tahun-tahun ke depan penuh dengan berkah, kesehatan, dan kesuksesan.🎂🥳</p>
-  <p>maaf nih jika sesimpel ini ucapannya.tapii, ada hadiah lagi meskipun ga seberapa </p>
-  <p>tapi semoga suka lah ya...</p>
-  <p> <strong>tapi keknya dikit banget jir hadiahnya yang dikasih zdum hehehehe </strong></p>
-  <p><strong>langsung chat zdum aja kalau mau hadiahnya atau hamgus wkwkwkkw</strong></p>
-  <p><strong>ga lah, harusnya ga hangus kalau hangus ku pukul si zdum</strong></p>
-  <div class="emoji">🎁🎈🥳</div>
+
+  <div class="envelope" id="envelope">
+    <div class="warning-text">⚠️ Jangan dibuka!</div>
+    <button class="open-button" onclick="openEnvelope()">Buka</button>
+
+    <div class="letter">
+      <h1>Selamat Ulang Tahun, Inee/Nadine! 🎉</h1>
+      <p>
+        Selamat ulang tahun yang ke-18, wih sudah tua ya sekarang! 😄<br><br>
+        Terima kasih sudah selalu ada, dalam tawa maupun sedih.<br>
+        Semoga hari ini membawa sejuta kebahagiaan,<br>
+        dan tahun yang baru ini penuh berkah, cinta, dan keberhasilan.<br><br>
+        Tetap jadi kamu yang luar biasa ya! 💖<br>
+        Kegagalan yang sudah berlalu biarlah berlalu.<br>
+        Terus maju, pantang mundur, dan semoga sukses selalu!<br><br>
+        Terima kasih ya, sudah menjadi teman yang baik. 😊
+      </p>
+    </div>
+  </div>
 
   <script>
-    const colors = ['#ff0', '#f0f', '#0ff', '#0f0', '#f00', '#00f'];
-    const count = 100;
-
-    for (let i = 0; i < count; i++) {
-      const confetti = document.createElement('div');
-      confetti.classList.add('confetti');
-      confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      confetti.style.width = confetti.style.height = Math.random() * 8 + 4 + 'px';
-      confetti.style.animationDelay = Math.random() * 5 + 's';
-      document.body.appendChild(confetti);
+    function openEnvelope() {
+      document.getElementById('envelope').classList.add('opened');
     }
   </script>
+
 </body>
 </html>
